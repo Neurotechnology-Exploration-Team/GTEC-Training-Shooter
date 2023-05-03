@@ -1,17 +1,20 @@
+using Gtec.UnityInterface;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using static Gtec.UnityInterface.BCIManager;
 
 public class GameHandler : MonoBehaviour
 {
     [Header("Enemy Spawning")]
-    public List<GameObject> spawnables;
+    public List<Npc> spawnables;
     public float distanceX;
     public float distanceZ;
 
     [Header("Enemies & Civilians")]
-    public List<GameObject> currentlySpawned;
+    public List<Npc> currentlySpawned;
+
     public int currentEnemies;
 
     [Header("Menus & UI")]
@@ -29,6 +32,11 @@ public class GameHandler : MonoBehaviour
     private float timeRemaining;
     private bool timerIsRunning = false;
 
+    [Header("EEG")]
+    public bool useEEG;
+    private uint _selectedClass = 0;
+    private bool _update = false;
+
     private static GameHandler instance;
 
     public static GameHandler Instance
@@ -40,10 +48,22 @@ public class GameHandler : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
+            if (useEEG)
+            {
+                // detach from class selection available event
+                BCIManager.Instance.ClassSelectionAvailable -= OnClassSelectionAvailable;
+            }
+
             Destroy(this.gameObject);
         }
         else
         {
+            if (useEEG)
+            {
+                // attach to class selection available event
+                BCIManager.Instance.ClassSelectionAvailable += OnClassSelectionAvailable;
+            }
+
             instance = this;
         }
     }
@@ -58,6 +78,13 @@ public class GameHandler : MonoBehaviour
             {
                 timeRemaining -= Time.deltaTime;
                 timerText.text = "Time: " + Mathf.FloorToInt(timeRemaining).ToString();
+
+                if (useEEG && _update && _selectedClass >= 3 && _selectedClass - 3 < currentlySpawned.Count)
+                {
+                    // if using eeg && there is a new eeg signal && it is not detecting the dummy objects && it is a valid object
+                    currentlySpawned[(int)(_selectedClass) - 3].focus();
+                    _update = false;
+                }
 
                 if (currentEnemies == 0)
                 {
@@ -83,6 +110,10 @@ public class GameHandler : MonoBehaviour
         timerIsRunning = true;
         score = 0;
         scoreText.text = "Score: " + score.ToString();
+
+        // Reset EEG detector
+        _selectedClass = 0;
+        _update = false;
     }
 
     private void SetUpTargets()
@@ -111,7 +142,7 @@ public class GameHandler : MonoBehaviour
         {
             if (currentlySpawned[i] != null)
             {
-                Destroy(currentlySpawned[i]);
+                currentlySpawned[i].destroyMe();
             }
             currentlySpawned.RemoveAt(i);
         }
@@ -124,7 +155,7 @@ public class GameHandler : MonoBehaviour
         gameOverScreen.SetActive(true);
     }
 
-    private void Spawn(GameObject target, bool isEnemy)
+    private void Spawn(Npc target, bool isEnemy)
     {
         // choose a random position within the rectangular area defined by distanceX and distanceZ
         float xPos = Random.Range(-distanceX / 2, distanceX / 2) + transform.position.x;
@@ -139,7 +170,7 @@ public class GameHandler : MonoBehaviour
             currentEnemies++;
         }
 
-        currentlySpawned.Add(Instantiate(target, spawnPos, spawnRot));
+        currentlySpawned.Add(Instantiate<Npc>(target, spawnPos, spawnRot));
     }
 
     public void IncreaseScore(int amount)
@@ -153,5 +184,18 @@ public class GameHandler : MonoBehaviour
         // Draw a semitransparent red cube at the transforms position
         Gizmos.color = new Color(1, 0, 0, 0.5f);
         Gizmos.DrawCube(transform.position, new Vector3(distanceX, 1, distanceZ));
+    }
+
+    /// <summary>
+    /// This event is called whenever a new class selection is available. Th
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OnClassSelectionAvailable(object sender, System.EventArgs e)
+    {
+        ClassSelectionAvailableEventArgs ea = (ClassSelectionAvailableEventArgs)e;
+        _selectedClass = ea.Class;
+        _update = true;
+        Debug.Log(string.Format("Selected class: {0}", ea.Class));
     }
 }

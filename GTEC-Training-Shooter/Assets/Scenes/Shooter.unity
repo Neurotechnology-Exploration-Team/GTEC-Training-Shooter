@@ -412,10 +412,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnables:
-  - {fileID: 3154808570578406926, guid: 1b32816d096fbec449b77a6aee61439e, type: 3}
-  - {fileID: 792980585978868235, guid: 8c1c999e8166ecf43933ed4b0059786c, type: 3}
-  - {fileID: 2836909369475929015, guid: e49a19f4f8041ce4ca586834c33774e2, type: 3}
-  - {fileID: 317637799554819980, guid: de6d0c50181c0134c9a9367bda3b3ef1, type: 3}
+  - {fileID: -1782491015001927497, guid: 1b32816d096fbec449b77a6aee61439e, type: 3}
+  - {fileID: 1548501189107490534, guid: 8c1c999e8166ecf43933ed4b0059786c, type: 3}
+  - {fileID: 9130794382757274563, guid: e49a19f4f8041ce4ca586834c33774e2, type: 3}
+  - {fileID: -963417926074451066, guid: de6d0c50181c0134c9a9367bda3b3ef1, type: 3}
   distanceX: 4.96
   distanceZ: 10.21
   currentlySpawned: []
@@ -427,6 +427,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 1326348675}
   timerText: {fileID: 361170016}
   startTime: 30
+  useEEG: 0
 --- !u!1 &318102433
 GameObject:
   m_ObjectHideFlags: 0
