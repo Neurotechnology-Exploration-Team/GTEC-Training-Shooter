@@ -427,7 +427,8 @@ MonoBehaviour:
   gameOverScreen: {fileID: 1326348675}
   timerText: {fileID: 361170016}
   startTime: 30
-  useEEG: 0
+  eRPFlashController3D: {fileID: 1769506070}
+  useEEG: 1
 --- !u!1 &318102433
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,6 +2163,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1587239988}
   m_CullTransparentMesh: 1
+--- !u!114 &1769506070 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6420512416770977473, guid: 1ba981cfe48fad74ebddd10d9d20bd87, type: 3}
+  m_PrefabInstance: {fileID: 618820767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 848058823, guid: 13b9f3ea2883c8b4e88452507869b435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1900050656
 GameObject:
   m_ObjectHideFlags: 0
