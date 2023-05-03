@@ -7,6 +7,9 @@ public class Npc : MonoBehaviour
     private GameHandler gameHandler;
     public bool isEnemy;
 
+    public Material flashMaterial;
+    public Material darkMaterial;
+
     private void Start()
     {
         gameHandler = GameHandler.Instance;

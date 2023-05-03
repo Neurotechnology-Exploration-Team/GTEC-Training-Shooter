@@ -33,6 +33,7 @@ public class GameHandler : MonoBehaviour
     private bool timerIsRunning = false;
 
     [Header("EEG")]
+    public ERPFlashController3D eRPFlashController3D;
     public bool useEEG;
     private uint _selectedClass = 0;
     private bool _update = false;
@@ -145,6 +146,11 @@ public class GameHandler : MonoBehaviour
                 currentlySpawned[i].destroyMe();
             }
             currentlySpawned.RemoveAt(i);
+
+            if (useEEG)
+            {
+                eRPFlashController3D.ApplicationObjects.RemoveAt(i + 3);
+            }
         }
     }
 
@@ -170,7 +176,19 @@ public class GameHandler : MonoBehaviour
             currentEnemies++;
         }
 
-        currentlySpawned.Add(Instantiate<Npc>(target, spawnPos, spawnRot));
+        Npc npc = Instantiate<Npc>(target, spawnPos, spawnRot);
+        currentlySpawned.Add(npc);
+
+        if (useEEG)
+        {
+            ERPFlashObject3D newFlashObj = new ERPFlashObject3D();
+            newFlashObj.ClassId = currentlySpawned.Count;
+            newFlashObj.DarkMaterial = npc.darkMaterial;
+            newFlashObj.FlashMaterial = npc.flashMaterial;
+            newFlashObj.GameObject = npc.gameObject;
+
+            eRPFlashController3D.ApplicationObjects.Add(newFlashObj);
+        }
     }
 
     public void IncreaseScore(int amount)

@@ -111,3 +111,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 0
+  flashMaterial: {fileID: 2100000, guid: d0d1f61a9e6921e44a590f9a0f7cc25a, type: 2}
+  darkMaterial: {fileID: 2100000, guid: fb422733cde59f54491d7db8a9556d96, type: 2}
