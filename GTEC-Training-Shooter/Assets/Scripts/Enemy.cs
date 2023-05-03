@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
         Debug.Log("Enemy Shot!");
         gameHandler.IncreaseScore(100);
         gameHandler.currentEnemies--;
-        Destroy(gameObject);
+        
+        // Deactivate instead of destroy so that EEG handler does not lose track of the object
+        // Game object will be destroyed when GameHandler runs CleanUpTargets()
+        gameObject.SetActive(false);
     }
 }

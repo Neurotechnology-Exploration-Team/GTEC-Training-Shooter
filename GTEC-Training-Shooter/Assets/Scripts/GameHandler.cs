@@ -85,9 +85,9 @@ public class GameHandler : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
     }
 
-    public void SetUpTargets()
+    private void SetUpTargets()
     {
-        Spawn(spawnables[0], true); // Spawn 1 garaunteed enemy
+        Spawn(spawnables[0], true); // Spawn 1 guaranteed enemy
 
         int targetAmount = Random.Range(0, 3); // Randomly Spawn More
 
@@ -105,7 +105,7 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-    public void CleanUpTargets()
+    private void CleanUpTargets()
     {
         for (int i = currentlySpawned.Count - 1; i >= 0; i--)
         {
@@ -117,14 +117,14 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    private void GameOver()
     {
         hud.SetActive(false);
         finalScoreText.text = "Final Score: " + score.ToString();
         gameOverScreen.SetActive(true);
     }
 
-    public void Spawn(GameObject target, bool isEnemy)
+    private void Spawn(GameObject target, bool isEnemy)
     {
         // choose a random position within the rectangular area defined by distanceX and distanceZ
         float xPos = Random.Range(-distanceX / 2, distanceX / 2) + transform.position.x;
