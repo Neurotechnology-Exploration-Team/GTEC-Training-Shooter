@@ -43,9 +43,4 @@ public class Npc : MonoBehaviour
         // Game object will be destroyed when GameHandler runs CleanUpTargets()
         gameObject.SetActive(false);
     }
-
-    public void destroyMe()
-    {
-        Destroy(gameObject);
-    }
 }

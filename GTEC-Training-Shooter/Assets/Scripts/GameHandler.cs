@@ -141,16 +141,16 @@ public class GameHandler : MonoBehaviour
     {
         for (int i = currentlySpawned.Count - 1; i >= 0; i--)
         {
-            if (currentlySpawned[i] != null)
-            {
-                currentlySpawned[i].destroyMe();
-            }
-            currentlySpawned.RemoveAt(i);
-
             if (useEEG)
             {
-                eRPFlashController3D.ApplicationObjects.RemoveAt(i + 3);
+                eRPFlashController3D.ApplicationObjects.RemoveAt(i + 2);
             }
+
+            if (currentlySpawned[i] != null)
+            {
+                Destroy(currentlySpawned[i].gameObject);
+            }
+            currentlySpawned.RemoveAt(i);
         }
     }
 
