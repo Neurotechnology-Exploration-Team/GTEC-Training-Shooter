@@ -896,6 +896,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6420512416770977473, guid: 1ba981cfe48fad74ebddd10d9d20bd87, type: 3}
+      propertyPath: FlashtimeMs
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420512416770977473, guid: 1ba981cfe48fad74ebddd10d9d20bd87, type: 3}
+      propertyPath: NumberOfTrainingTrials
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420512416770977473, guid: 1ba981cfe48fad74ebddd10d9d20bd87, type: 3}
       propertyPath: TrainingObject.GameObject
       value: 
       objectReference: {fileID: 1379871483}
@@ -1790,8 +1798,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379871483}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.575, y: 1.611, z: 0.81}
-  m_LocalScale: {x: 0.14098804, y: 0.14098804, z: 0.14098804}
+  m_LocalPosition: {x: 1.664, y: 1.611, z: 0.81}
+  m_LocalScale: {x: 0.1285261, y: 0.1285261, z: 0.1285261}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 874752279}
