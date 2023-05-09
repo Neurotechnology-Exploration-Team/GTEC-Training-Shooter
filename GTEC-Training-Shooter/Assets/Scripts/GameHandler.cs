@@ -35,8 +35,8 @@ public class GameHandler : MonoBehaviour
     [Header("EEG")]
     public ERPFlashController3D eRPFlashController3D;
     public bool useEEG;
-    private uint _selectedClass = 0;
-    private bool _update = false;
+    private uint selectedClass = 0;
+    private bool update = false;
 
     private static GameHandler instance;
 
@@ -80,11 +80,12 @@ public class GameHandler : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
                 timerText.text = "Time: " + Mathf.FloorToInt(timeRemaining).ToString();
 
-                if (useEEG && _update && _selectedClass >= 3 && _selectedClass - 3 < currentlySpawned.Count)
+                if (useEEG && update && selectedClass >= 3 && selectedClass - 3 < currentlySpawned.Count)
                 {
                     // if using eeg && there is a new eeg signal && it is not detecting the dummy objects && it is a valid object
-                    currentlySpawned[(int)(_selectedClass) - 3].focus();
-                    _update = false;
+                    // the first two objects are the training square and a dummy object because you need at least 2 to start training
+                    currentlySpawned[(int)(selectedClass) - 3].focus();
+                    update = false;
                 }
 
                 if (currentEnemies == 0)
@@ -113,8 +114,8 @@ public class GameHandler : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
 
         // Reset EEG detector
-        _selectedClass = 0;
-        _update = false;
+        selectedClass = 0;
+        update = false;
     }
 
     private void SetUpTargets()
@@ -212,8 +213,8 @@ public class GameHandler : MonoBehaviour
     private void OnClassSelectionAvailable(object sender, System.EventArgs e)
     {
         ClassSelectionAvailableEventArgs ea = (ClassSelectionAvailableEventArgs)e;
-        _selectedClass = ea.Class;
-        _update = true;
+        selectedClass = ea.Class;
+        update = true;
         Debug.Log(string.Format("Selected class: {0}", ea.Class));
     }
 }
