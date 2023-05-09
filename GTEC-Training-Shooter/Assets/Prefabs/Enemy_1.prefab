@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6736424205527297216}
   - component: {fileID: 1015811380840023436}
   - component: {fileID: 1743301821977912879}
-  - component: {fileID: 1948490429}
+  - component: {fileID: -1782491015001927497}
   m_Layer: 0
   m_Name: Enemy_1
   m_TagString: Untagged
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dc126ac3416c9114fa6f6bf249af358d, type: 2}
+  - {fileID: 2100000, guid: 6eacb31c790a84a49b565552a56402e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.394187, y: 0.0000003159292, z: 8.6755705}
   m_Center: {x: -0.2932426, y: 0.00000035762724, z: 0.6622117}
---- !u!114 &1948490429
+--- !u!114 &-1782491015001927497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,6 +107,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3154808570578406926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8552560d622b6d1498571f0932a53c1a, type: 3}
+  m_Script: {fileID: 11500000, guid: 361999d1fb284414f90e6dae9537a39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemy: 1
+  flashMaterial: {fileID: 2100000, guid: d978c15a027bca6438bedfb8c59ecd5a, type: 2}
+  darkMaterial: {fileID: 2100000, guid: 6eacb31c790a84a49b565552a56402e1, type: 2}
+  explosionEffect: {fileID: 198656289721292014, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}

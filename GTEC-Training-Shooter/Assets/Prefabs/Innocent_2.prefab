@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2450740095788092202}
   - component: {fileID: 6127253095823381703}
   - component: {fileID: 1547237194870170969}
-  - component: {fileID: 1731642186914972222}
+  - component: {fileID: -963417926074451066}
   m_Layer: 0
   m_Name: Innocent_2
   m_TagString: Untagged
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fb422733cde59f54491d7db8a9556d96, type: 2}
+  - {fileID: 2100000, guid: e6e68d6bbe0699e46b2239a316af3188, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.3362553, y: 0.00000031592927, z: 8.566255}
   m_Center: {x: -0.30342907, y: 0.00000023841855, z: 0.23227459}
---- !u!114 &1731642186914972222
+--- !u!114 &-963417926074451066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,6 +107,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 317637799554819980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba1445b9cad203479907d3a1f141375, type: 3}
+  m_Script: {fileID: 11500000, guid: 361999d1fb284414f90e6dae9537a39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemy: 0
+  flashMaterial: {fileID: 2100000, guid: 170549809ebe9ea40aaf1e0ce0c0ebca, type: 2}
+  darkMaterial: {fileID: 2100000, guid: e6e68d6bbe0699e46b2239a316af3188, type: 2}
+  explosionEffect: {fileID: 198656289721292014, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
