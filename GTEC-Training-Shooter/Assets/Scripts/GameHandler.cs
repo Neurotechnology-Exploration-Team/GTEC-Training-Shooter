@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using static Gtec.UnityInterface.BCIManager;
+// using static Gtec.UnityInterface.BCIManager;
 
 public class GameHandler : MonoBehaviour
 {
@@ -27,6 +27,7 @@ public class GameHandler : MonoBehaviour
     public GameObject gameOverScreen;
 
     [Header ("Timer")]
+    public bool timerEnabled;
     public TextMeshProUGUI timerText;
     public float startTime;
     private float timeRemaining;
@@ -35,6 +36,8 @@ public class GameHandler : MonoBehaviour
     [Header("EEG")]
     public ERPFlashController3D eRPFlashController3D;
     public bool useEEG;
+    public bool randomFlashing = false;
+    public float flashingChance = 0.1f;
     private uint selectedClass = 0;
     private bool update = false;
 
@@ -77,8 +80,15 @@ public class GameHandler : MonoBehaviour
         {
             if (timeRemaining > 0)
             {
-                timeRemaining -= Time.deltaTime;
-                timerText.text = "Time: " + Mathf.FloorToInt(timeRemaining).ToString();
+                if (timerEnabled)
+                {
+                    timeRemaining -= Time.deltaTime;
+                    timerText.text = "Time: " + Mathf.FloorToInt(timeRemaining).ToString();
+                }
+                else
+                {
+                    timerText.text = "Time: ∞";
+                }
 
                 if (useEEG && update && selectedClass >= 3 && selectedClass - 3 < currentlySpawned.Count)
                 {
@@ -92,6 +102,15 @@ public class GameHandler : MonoBehaviour
                 {
                     CleanUpTargets();
                     SetUpTargets();
+                }
+                else if (randomFlashing)
+                {
+                    // on a small random chance, choose an NPC and swap its material
+                    if (Random.Range(0f, 1f) < flashingChance)
+                    {
+                        int randomIndex = Random.Range(0, currentlySpawned.Count);
+                        currentlySpawned[randomIndex].SwapMaterial();
+                    }
                 }
             }
             else
@@ -212,9 +231,9 @@ public class GameHandler : MonoBehaviour
     /// <param name="e"></param>
     private void OnClassSelectionAvailable(object sender, System.EventArgs e)
     {
-        ClassSelectionAvailableEventArgs ea = (ClassSelectionAvailableEventArgs)e;
-        selectedClass = ea.Class;
-        update = true;
-        Debug.Log(string.Format("Selected class: {0}", ea.Class));
+        // ClassSelectionAvailableEventArgs ea = (ClassSelectionAvailableEventArgs)e;
+        // selectedClass = ea.Class;
+        // update = true;
+        // Debug.Log(string.Format("Selected class: {0}", ea.Class));
     }
 }

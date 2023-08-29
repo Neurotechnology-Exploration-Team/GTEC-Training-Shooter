@@ -51,4 +51,17 @@ public class Npc : MonoBehaviour
         // Game object will be destroyed when GameHandler runs CleanUpTargets()
         gameObject.SetActive(false);
     }
+
+    public void SwapMaterial()
+    {
+        // swap the material of the object to flashMaterial or darkMaterial, whichever it is not currently using
+        if (GetComponent<Renderer>().sharedMaterial.name.Equals(flashMaterial.name))
+        {
+            GetComponent<Renderer>().material = darkMaterial;
+        }
+        else
+        {
+            GetComponent<Renderer>().material = flashMaterial;
+        }
+    }
 }
